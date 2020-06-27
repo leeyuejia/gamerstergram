@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "5ef1c9aa2b7dd0469c86573a"
+  },
+  "username": "yjyj",
+  "password": "$2b$10$bAA34rtqCy2SeAWJoYY1d.lPxR0doWZpYOdqas6yammmV8/xwPxwu",
+  "nickname": "yjyj2",
+  "createdAt": "Tuesday, June 23rd 2020, 17:21:46",
+  "updatedAt": "Saturday, June 27th 2020, 23:39:07",
+  "lastLoggedInAt": "Sunday, June 28th 2020, 24:04:24",
+  "userFollowing": [],
+  "followedBy": [
+    "hwang"
+  ],
+  "biography": "yjyj bio. password is yjyj",
+  "proImg": "http://res.cloudinary.com/gamestergram/image/upload/v1593272365/e8dbd26bcd7953838efa5cbbb3a25388_jrkape.jpg"
+},{
+  "_id": {
+    "$oid": "5ef1d0842db88d4b08a533f4"
+  },
+  "username": "leeyuejia",
+  "password": "$2b$10$xZNHJ1wljg0pS0FlGarjCulA8GmwJtfKKgyV4XuswD76.YVqbWgWq",
+  "nickname": "LYJ",
+  "createdAt": "Tuesday, June 23rd 2020, 17:51:00",
+  "updatedAt": "Saturday, June 27th 2020, 23:38:21",
+  "lastLoggedInAt": "Saturday, June 27th 2020, 23:45:59",
+  "userFollowing": [
+    "hwang"
+  ],
+  "followedBy": [],
+  "biography": "I am a gamer",
+  "proImg": "http://res.cloudinary.com/gamestergram/image/upload/v1593270575/600b36af35fd15d600c1a490f2853ed2_y3t8sv.jpg"
+},{
+  "_id": {
+    "$oid": "5ef461ed3789a44014087caa"
+  },
+  "username": "hwang",
+  "password": "$2b$10$5bWmmUgLf05OoOYVsMwCYOK3uw5e9LfImLJ97R8IHMVHdE.a58MYC",
+  "nickname": "HJW",
+  "proImg": "https://images.vexels.com/media/users/3/140341/isolated/preview/6dbf49d527597784fe67b3058980bf59-giraffe-cartoon-by-vexels.png",
+  "biography": "i am hwang. password is hwang",
+  "createdAt": "Thursday, June 25th 2020, 16:35:57",
+  "updatedAt": "Sunday, June 28th 2020, 24:20:07",
+  "lastLoggedInAt": "Sunday, June 28th 2020, 24:19:07",
+  "userFollowing": [
+    "yjyj"
+  ],
+  "followedBy": [
+    "leeyuejia"
+  ]
+}]

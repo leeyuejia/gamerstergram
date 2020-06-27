@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSterGram</title>
+
+    <%-include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/public/css/dashboardStyle.css">
+    <script src="/public/app.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Top NAV bar -->
+        <%-include('../partials/nav.ejs',{currentUser: currentUser, userDashboard : userDashboard, userDashboardProfile : userDashboardProfile}) %>
+    </header>
+
+    <form action="/app/<%=currentUser.username%>/dashboard/updateProfile?_method=PUT" method="POST" class="mx-auto mb-3" style="width: 40rem; margin-top: 70px;" id="table">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="username" class="input-group-text" id="basic-addon3" style='width: 10rem;'>Username
+                </label>
+            </div>
+            <input type="text" class="form-control" name="username" placeholder="user name" value="<%=currentUser.username%>"required>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="nickname" class="input-group-text" id="basic-addon3" style='width: 10rem;'>Nickname
+                </label>
+            </div>
+            <input type="text" class="form-control" name="nickname" placeholder="nick name" value="<%=currentUser.nickname%>"required>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="biography" class="input-group-text" id="basic-addon3"
+                    style='width: 10rem;'>description</label>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" name="biography" rows="5"
+                required><%=currentUser.biography%></textarea>
+        </div>
+        <div class="float-left">
+            <a href="/app/<%=currentUser.username%>/dashboard" class="btn btn-primary my-2">Back</a>
+        </div>
+        <div class="float-right">
+            <button class="btn btn-primary my-2" type="submit" style="width: 10rem;">Update </button>
+        </div>
+    </form>
+</body>

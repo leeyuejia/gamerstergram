@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>REGISTRATION</title>
+    <!-- STYLES -->
+    <link rel="stylesheet" href="/public/css/newUserStyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:200,400,500" rel="stylesheet">
+  </head>
+  <body>
+    <!-- ============= CONTAINER ============== -->
+    <div class="container">
+      <!-- sidebar -->
+      <div class="sidebar"></div>
+      <!-- registration container -->
+      <div class="registration">
+        <h1>REGISTRATION</h1>
+        <!-- START FORM -->
+        <form action="/app/users/new/create" method="POST">
+          <!-- fieldset for account info -->
+          <fieldset class="account-info">
+            <!-- legend for account info -->
+            <legend>ACCOUNT INFORMATION</legend>
+              <!-- username -->
+              <label for= "username">USERNAME</label>
+              <input type="text" id="username" name="username" placeholder="your username. the name u use to name yourself as a user"/>
+              <!-- password -->
+              <label for="password">PASSWORD</label>
+              <input type="password" id="password" name="password" placeholder="shh... do not let people see your password">
+              <!-- email -->
+              <label for="email">Nickname</label>
+              <input type="text" id="nickname" name="nickname" placeholder="this is your public name"/>
+              <!-- profile image -->
+              <label for="proImg">Upload a image of yourself</label>
+              <input type="text" id="proImg" name="proImg" placeholder="url (later change to upload from local machine"/>
+          </fieldset>
+          <!-- fieldset for profile info -->
+          <fieldset class="profile-info" id="flex-grow">
+            <!-- legend for profile info -->
+            <legend>PROFILE INFORMATION</legend>
+              <!-- biography -->
+              <label for="biography">BIOGRAPHY</label>
+              <!-- textarea for larger bodies of text -->
+              <textarea id="biography" name="biography" placeholder="Describe about yourself. (max.Char 300)" maxlength="300"></textarea>
+          </fieldset>
+          <!-- submit button -->
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

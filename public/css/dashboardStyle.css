@@ -1,0 +1,44 @@
+.middle-left {
+    top: 70px;
+    left:20px;
+    width: 15%;
+    z-index: 1000;
+    background-color: #f8f9fa;
+}
+
+.middle-right {
+    top: 70px;
+    right: 2px;
+    width: 25%;
+    height: 100%;
+}
+
+.feedDiv {
+    margin-top: 70px;
+}
+.footer {
+    z-index: 1000;
+}
+.img-fit {
+    object-fit: cover;
+}
+#username, #password, #nickname, #proImg{
+    border: none;
+    border-bottom: 1px solid grey;
+}
+input:focus {
+    outline: none;
+    border: none;
+}
+textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: rgba(0,0,0,0.0);
+  }
+  textarea:focus {
+    outline: none;
+    background-color: rgba(0,0,0,0.1);
+  }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSterGram</title>
+
+    <%-include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/public/css/dashboardStyle.css">
+    <script src="/public/app.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- Top NAV bar -->
+        <%-include('./partials/nav.ejs',{currentUser: currentUser, userDashboard : userDashboard, userDashboardProfile : userDashboardProfile}) %>
+    </header>
+    <form action="/app/<%=username%>/dashboard/<%=postId%>/edit?_method=PUT" method="POST" class="mx-auto mb-3" style="width: 40rem; margin-top: 70px;" id="table">
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="title" class="input-group-text" id="basic-addon3" style='width: 10rem;'>Title of your game
+                </label>
+            </div>
+            <input type="text" class="form-control" name="title" placeholder="give a title" value="<%=oneFeed.title%>"required>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="feedImg" class="input-group-text" id="basic-addon3" style='width: 10rem;'>Picture
+                </label>
+            </div>
+            <input type="text" class="form-control" name="feedImg" placeholder="online url" value="<%=oneFeed.img%>" required>
+        </div>
+        <!-- EDIT IMAGE -->
+        <!-- <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="img" class="input-group-text" id="basic-addon3" style='width: 10rem;'>upload a
+                    picture</label>
+            </div>
+            <input type="file" class="form-control" name="feedImg" value="<%=oneFeed.img%>">
+        </div> -->
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label for="description" class="input-group-text" id="basic-addon3"
+                    style='width: 10rem;'>description</label>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" name="description" rows="5"
+                required><%=oneFeed.description%></textarea>
+        </div>
+
+        <div id="tag">
+            <% oneFeed.tags.forEach( el => { %>
+            <div class="input-group mb-3 tag">
+                <div class="input-group-prepend">
+                    <label for="tags" class="input-group-text" id="basic-addon3" style='width: 10rem;'>#</label>
+                </div>
+                <input type="text" class="form-control" name="tags" placeholder="add a tag" value="<%=el%>">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary removetagBtn" type="button" onclick= "removeTag(event)">-</button>
+                </div>
+            </div>
+            <%})%>
+
+            <div class="input-group mb-3 tag">
+                <div class="input-group-prepend">
+                    <label for="tags" class="input-group-text" id="basic-addon3" style='width: 10rem;'>#</label>
+                </div>
+                <input type="text" class="form-control" name="tags" placeholder="add a tag">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary tagBtn" type="button" onclick="addTag()">+</button>
+                    <button class="btn btn-outline-secondary removetagBtn" type="button" onclick= "removeTag(event)">-</button>
+                </div>
+            </div>
+        </div>
+        <div class="float-left">
+            <a href="/app/<%=username%>/dashboard/<%=postId%>" class="btn btn-primary my-2">Back</a>
+        </div>
+        <div class="float-right">
+            <button class="btn btn-primary my-2" type="submit" style="width: 10rem;">Edit </button>
+        </div>
+
+    </form>
+
+
+</body>
+
+</html>

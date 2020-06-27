@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameSterGram</title>
+
+  <%-include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/public/css/dashboardStyle.css">
+  <script src="/public/app.js"></script>
+</head>
+
+<body>
+  <%-include('./partials/nav.ejs',{currentUser: currentUser, userDashboard : userDashboard, userDashboardProfile : userDashboardProfile}) %>
+  <!-- ALL THE FEED SHOW HERE -->
+  <% userFeeds.forEach(eachFeed => {%>
+  <div class="row mx-auto feedDiv">
+    <div class="col-sm-6 mx-auto mb-1 justify-content-center">
+      <div class="card mx-auto" style="width: 70%;">
+        <div class="card-body">
+          <h5 class="card-title"><%=eachFeed.title%></h5>
+          <img src="<%=eachFeed.img%>" class='card-img-top img-fit' alt="<%=eachFeed.title%>" srcset="" height="250px">
+          <p class="card-text"><%=eachFeed.description%></p>
+          <a href="/app/<%=userDashboard.username%>/dashboard/<%=eachFeed.postID%>" class="btn btn-primary">See More</a>
+          <% if(currentUser.username === userDashboard.username) { %>
+          <div class="action-container d-flex flex-row justify-content-start">
+            <a href="/app/<%=userDashboard.username%>/dashboard/<%=eachFeed.postID%>/edit"
+              class="btn btn-primary my-2 mr-2 flex-grow-1">Edit</a>
+            <form action="/app/<%=userDashboard.username%>/dashboard/<%=eachFeed.postID%>/delete?_method=DELETE"
+              class="flex-grow-1" method="POST">
+              <button class="btn btn-danger my-2 ml-2 flex-grow-1 deleteBtn" type="submit" style="width: 100%;"> REMOVE
+              </button>
+            </form>
+          </div>
+          <%}%>
+              <% if (eachFeed.tags) {%>
+          <ul class="nav">
+            <% eachFeed.tags.forEach(el => {%>
+            <li class="nav-item">
+              <p class="nav-link active border-right"><%=el%></p>
+            </li>
+            <%})%>
+          </ul>
+          <%}%>
+          <% if(eachFeed.comments) {%>
+          <div class="card-footer d-flex flex-row align-content-center justify-content-between">
+            <div class="comment-container">
+              <i class="far fa-comment text-muted mx-1"> <%=eachFeed.comments.length%></i>
+            </div>
+            <p class="card-text text-muted">Posted on : <%=eachFeed.postedAt%></p>
+          </div>
+          <%} else {%>
+            <div class="card-footer d-flex flex-row align-content-center justify-content-between">
+              <div class="comment-container">
+                <i class="far fa-comment text-muted mx-1"> 0 </i>
+              </div>
+              <p class="card-text text-muted">Posted on : <%=eachFeed.postedAt%></p>
+            </div>
+          <%}%>
+
+    </div>
+  </div>
+  </div>
+  </div>
+  <%})%>
+</body>
+
+</html>

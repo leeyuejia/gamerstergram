@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSterGram</title>
+
+    <%-include('./partials/head.ejs') %>
+    <script src="/public/app.js"></script>
+    <link rel="stylesheet" href="/public/css/dashboardStyle.css">
+</head>
+
+<body>
+    <%-include('./partials/nav.ejs',{currentUser: currentUser, userDashboard : userDashboard, userDashboardProfile : userDashboardProfile}) %>
+
+    <div class="main-container mx-auto feedDiv" id="table">
+        <div class="card mx-auto" style="width: 40rem;">
+            <img src="<%=oneFeed.img%>" class="card-img-top" alt="<%oneFeed.title%>">
+            <div class="card-body">
+                <h5 class="card-title"><%=oneFeed.title%></h5>
+                <p class="card-text"><%=oneFeed.description%></p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-text">tags</h5>
+                <%oneFeed.tags.forEach(tag => {%>
+                <p class="card-text"><%=tag%></p>
+                <%})%>
+            </div>
+            <% if(currentUser.username === userDashboard.username) {%>
+            <a href="/app/<%=username%>/dashboard/<%=postId%>/edit" class="btn btn-danger mx-3">Edit this post</a>
+            <%}%>
+            <ul class="list-group list-group-flush my-3">
+                <% if(oneFeed.comments) {%>
+            <%oneFeed.comments.forEach(el => {%>
+            <% if(el.commentImg) { %>
+            <div class="commentImg">
+                <img src="<%=el.commentImg%>" alt="" class="card-img-top img-fit" height="200px">
+            </div>
+            <% } %>
+            <li class="input-group my-2 d-flex flex-row flex-nowrap align-content-center justify-content-start border-bottom pb-2"
+                style="width: 100%;">
+                <div class="input-group-text flex-column justify-content-between" style="width: 8rem;">
+                    <p class=" text-center text-wrap p-1" style='width: 8rem;'><%=el.commentBy%></p>
+                    <span class="text-muted text-wrap small p-1" id="basic-addon2">on <%=el.commentAt%></span>
+                </div>
+                <p class=" m-2" style="width: 100%;"><%=el.commentInfo%></p>
+            </li>
+            <%})%>
+            <% } else { %>
+            <div class="card-body">
+                <h5 class="card-title">No comment</h5>
+            </div>
+            <% } %>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- COMMENT POST SECTION  -->
+
+    <div class="div">
+        <form action="/app/<%=username%>/dashboard/<%=postId%>?_method=PUT" method="POST" class="mx-auto mb-3"
+            style="width: 40rem;" id="table">
+            <div class="input-group mb-3 my-3 align-items-stretch">
+                <div class="input-group-prepend">
+                    <label for="title" class="input-group-text" id="basic-addon3" style='width: 8rem;'>say
+                        something
+                    </label>
+                </div>
+                <input type="text" class="align-self-stretch flex-grow-1" style="width: 1%;" name="commentInfo"
+                    placeholder="say something">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary tagBtn" type="submit">post</button>
+                </div>
+            </div>
+        </form>
+        <!-- upload image file -->
+        <!-- <div class="input-group-append">
+            <form action="/app/<%=username%>/dashboard/<%=postId%>/postCommentImg" method="POST"
+                enctype="multipart/form-data" class="mx-auto mb-3" style="width: 40rem;">
+                <i class="btn btn-outline-secondary far fa-image fa-2x" style="color: #6c757d;"
+                    onclick="commentUploadImg()"></i>
+                <input type="file" class="my-3" id="commentImg" accept="image/*" name="cImg"
+                    placeholder="Upload a profile picture" style="display: none;" />
+                <button class="btn btn-outline-secondary tagBtn" type="submit">Upload</button>
+            </form>
+        </div> -->
+    </div>
+
+
+</body>
+
+</html>

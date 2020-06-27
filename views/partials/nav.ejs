@@ -1,0 +1,96 @@
+<header>
+  <!-- Top NAV bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+      aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
+      style="display: inline-block;">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <form class="form-inline my-2 my-lg-0 mx-2 flex-grow-1" action='/app/login/filterByTag?_method=PUT' method="POST">
+      <input class="form-control mr-sm-2" type="search" name='filterByTags' placeholder="Search" aria-label="Search"
+        style="width: 30%;">
+      <button class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit">by tags</button>
+      <button class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit">by username</button>
+    </form>
+    <h5 class="justify-self-end">Hi! <%= currentUser.username%></h5>
+  </nav>
+  <!-- Dropdown navbar -->
+  <div class="position-fixed middle-left collapse p-3" id="navbarToggleExternalContent">
+    <div class="collapse show">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/app/login">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/app/<%=currentUser.username%>/dashboard">My DashBoard <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/app/<%=currentUser.username%>/dashboard/create/newfeed">Add</a>
+        </li>
+        <li class="nav-item">
+          <form action="/app/sessions?_method=DELETE" method="post">
+            <input type="submit" class='nav-item' name="" value="Logout">
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- profile card -->
+  <div class="position-fixed middle-right">
+    <div class="show" id="navbarToggleExternalConten">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4 d-flex flex-column justify-content-between">
+            <% if(userDashboardProfile.proImg) {%>
+            <img src="<%=userDashboardProfile.proImg%>" class="card-img" alt="<%= userDashboardProfile.username%>">
+            <% } else {%>
+            <i class="far fa-user"></i>
+            <% } %>
+            <div class="input-group mb-3 justify-content-center">
+            <%if(currentUser.username === userDashboardProfile.username) {%>
+              <form action="/app/<%=currentUser.username%>/dashboard/editProfileImage?_method=PUT" method="POST"
+                enctype="multipart/form-data" class="mx-auto">
+                <i class="btn btn-outline-secondary far fa-image fa-2x" style="color: #6c757d; width: 100%;"
+                  onclick="commentUploadImg()"></i>
+                <input type="file" class="my-3" id="commentImg" accept="image/*" name="proImg"
+                  placeholder="Upload a profile picture" style="display: none;" />
+                <div class="input-group-append">
+                  <button class="btn btn-light my-2" type="submit">change picture</button>
+                </div>
+              </form>
+              <%}%>
+              
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%=userDashboardProfile.nickname%></h5>
+              <p class="card-text"><%=userDashboardProfile.biography%></p>
+              <p class="card-text"><small class="text-muted">last seen at
+                  <%=userDashboardProfile.lastLoggedInAt%></small></p>
+              <div class="card-footer d-flex justify-content-around align-items-center">
+                <i class="fas fa-rss text-muted"> <%=userDashboard.feeds.length%> </i>
+                <p class="text-muted my-auto"><%=userDashboardProfile.userFollowing.length%> following</p>
+                <p class="text-muted my-auto"><%=userDashboardProfile.followedBy.length%> followers</p>
+              </div>
+              <% if(currentUser.username === userDashboard.username) {%>
+              <a href="/app/<%=userDashboard.username%>/dashboard/editProfile" class="btn btn-light my-2"
+                style="width: 100%;">Edit your profile</a>
+              <% } else if(currentUser.userFollowing.includes(userDashboard.username)) {%>
+              <form action="/app/<%=userDashboard.username%>/dashboard/unfollow" method="POST">
+                <button class="btn btn-danger my-2 deleteBtn" type="submit" style="width: 100%;"> following </button>
+              </form>
+              <% } else { %>
+              <form action="/app/<%=userDashboard.username%>/dashboard/follow" method="POST">
+                <button class="btn btn-primary my-2 deleteBtn" type="submit" style="width: 100%;"> follow </button>
+              </form>
+              <% } %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
