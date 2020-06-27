@@ -2,7 +2,7 @@ const gamesterController = require('./controllers/gamesterController')
 const usersController = require('./controllers/usersController')
 const sessionsController = require('./controllers/sessionsController')
 const multer = require('multer');
-const upload = multer({dest: '/desktop/uploads/images'})
+const upload = multer({dest: 'uploads/'})
 
 module.exports = (app) => {
     app.get('/', (req,res) => res.redirect('/app/login'))
