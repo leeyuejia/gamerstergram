@@ -4,9 +4,12 @@
 
 This application is a website that brings a community of common interest together to share and learn. It is a focus group community on the subject of games.  
 
-## Application link "
+## Application link 
 
-- (link to application)
+- http://gamerstergram-yj.herokuapp.com/
+
+## Repository
+- https://github.com/leeyuejia/gamerstergram
 
 ## Table of Contents
 - [Introduction](#Introduction)
@@ -14,6 +17,8 @@ This application is a website that brings a community of common interest togethe
 - [Technology Used](#Technology-used)
 - [Main Features](#Main-features)
 - [User Journey Map](#User-Journey-Map)
+- [Data Structure](#Data-Structure)
+- [Methodology](#Methodology)
 - [Developer Journey](#Developer-Journey)
 - [Future Development](#Future-Development)
 
@@ -55,11 +60,11 @@ Next, build main application page where all user's basic info and latest post is
 
 Other users can post comments other other user's viewpages. 
 
-BONUS : include password authentication and adding a social list. 
+BONUS : To add a 
 
 ## Technology used
 
-1) CSS
+1) CSS / BOOTSTRAP
 2) MVC structure
 3) JQuery
 5) EJS view engine
@@ -68,6 +73,7 @@ BONUS : include password authentication and adding a social list.
 8) Express.js
 9) Heroku (for deployment of application)
 10) Mongo Atlas ( for storing databases on cloud platform)
+11) Moment.js ( For handling of dates)
 11) External source
     - Multer (For uploading of image to server side)
     - Cloudinary (Media storage )
@@ -75,7 +81,7 @@ BONUS : include password authentication and adding a social list.
 ## Main Features
 
 1) Sign in / Sign out. Authenticating user and start user's session
-2) Search bar to filter out tags, username and game title
+2) Search bar to filter out by tags, username or title
 3) Dashboard that shows User's latest feeds
 4) Create and Post feeds which have 
     - Required fields like ( Title, tags, game title, description) 
@@ -87,108 +93,101 @@ BONUS : include password authentication and adding a social list.
 
 ## User Journey Map
 
-1) Main application page. **HOMEPAGE**
+0) Sign up / sign in **LANDINGPAGE**
+
+<img src ="wireframe/indexpage.png" width= "100%">
+    - User can choose to sign up or log in. Once authenticated, same page will refresh with authenticated user which is a condition in order for the dashboard page to be displayed. 
+
+0) Signed in **HOMEPAGE**
+
+<img src ="wireframe/indexpage(authenticated).png" width= "100%">
+- Here All users feed are displayed. Quick access tools like search and hamburger menu which is shortcut to user's dashboard, homepage, add subject and logout function. 
 
     DISPLAY
     - Every user's latest post in a flexbox display manner. 
     - A side Nav Hamburger menu button that can access an authenticated User's features.
         - user features include
-            1) Dashboard - direct to **DASHBOARDPage** 
-            2) sign out - sign the users out and redirect to **HOMEPAGE**
-            3) Post - directs to **NEWPOSTpage**
-    - if user is not signed in. display sign in option
+            1) Home - direct to **HomePage** 
+            2) My Dashboard - direct to **user's DashboardPage**
+            2) Sign out - sign the users out and redirect to **LandingPage**
+            3) Post - directs to **createNewFeedPage**
     - A search bar header to filter post by game title, username and post dates. 
-    - (BONUS) user can click follow to add to the list of favourite users that will appear in their latest feed the next time user sign in. 
 
     INTERACTION
-    - User can enter into other user's **wall page** and view their posts 
+    - User can enter into other user's **dashboardpage** and view their posts 
     - User can enter into its own **dashboard** to edit, read, or post. 
 
-2) Sign in page. **SIGNINpage**
+1) Main application page. **DASHBOARDPAGE**
+
+<img src ="wireframe/UserDashboardPage.PNG" width= "100%">
+- This is User's main dashboard page where current session user can perform full CRUD function to both the feed and the profile. 
 
     DISPLAY
-    - User can sign in to their page with **EMAIL** and **PASSWORD**
-    - New USER can sign up with **username** (of their choice), **EMAIL** and setup a **PASSWORD** 
-    - (BONUS) sign in with google / facebook / instagram account. 
+    - Every user's latest post in a scroll down form
+    - User's profile card is display fixed where user can view, change profile picture and direct to edit their respective profile picture.
+
+2) User's single feed page. **ShowFeedPage**
+
+<img src ="wireframe/UserIndividualPage.PNG" width= "100%">
+- This is the innermost layer of views. Where individual post is displayed. Main interaction is for user to read and post comment. editing feed is also displayed. 
+
+    DISPLAY
+    - Information on One feed displayed. With comments to follow
+    - A quick function to edit the post. 
+    - Profile card remain at fixed position
 
     INTERACTION
-    - Signed in will direct to **HOMEPAGE** with username displayed
-    - Upon successful signed up, will direct to **HOMEPAGE**
+    - Post or read comments
+    - Edit feed. 
 
-3) Dashboard **DASHBOARDPAGE**
+3) Create new feed **createFeedPage**
+
+<img src ="wireframe/CreateFeedPage.PNG" width= "100%">
+- This is a simple form submission to create new feed or subject. Once feed is created, it will redirect to user's dashboard page
+
+    INTERACTION
+    Fields that are required to displayed are 
+        - Title
+        - A Holding image
+
+4) Editing feed **editFeedPage** 
+<img src ="wireframe/EditFeedPage.PNG" width= "100%">
+- this is another form submission with all its field having default value displayed in the input area.
 
     DISPLAY
-    - User can see their own post
-    - Side nav bar to direct to  
-        1) Dashboard - direct to **DASHBOARDPage** 
-        2) sign out - sign the users out and redirect to **HOMEPAGE**
-        3) Post - directs to **NEWPOSTpage**
-    - Search option bar to search within their own post. 
-    - Sort option to sort by latest feed / Title Alphabetical order
-    - (BONUS) A side nav that shows their recent activity ( up to 10 items)
+    - Current information will be displayed as its current respective value
+    - To change images, user can only replace with an already online url instead of uploading to cloudinary and extract as a URL (**NEGATIVE POINT**) 
+    - A Quick Menu button is still there to quickly navigate to other pages. 
     
-    INTERACTION
-    - For each post, user can EDIT / DELETE / SHOW on that particular post
-        - for EDIT - **editPage** which add content onto the existing post or edit page
-        - for DELETE - **delete** which deletes the entire post
-        - for SHOW -- **showPage** which shows the post's entire detail
-
-
-4) Posting New content **NEWPOSTpage**
-
-    DISPLAY
-    - a form div that user can input new content with fields such as
-        - REQUIRED
-            - Title
-            - add main image (one url link)
-            - Genre (select options) (Walkthrough / Reviews / Challenges / Tips & Tricks)
-            - add tags (add on options) ("#game title", "#question", "#stucked", "#experiences" and etc)
-            - Description (textarea)
-
-        - NON-REQUIRED
-            - sub images(can add as many images as user pleases)
-            - sub description
-            - external link
-    - Submit button
-
-    INTERACTION
-        - User can key in information and click the submit button. 
-        - Upon submission, it will redirect to user's dashboard page
-
-5) Editing content on existing post **editPage** 
-
-    DISPLAY
-    - Information about current post to be display with the option to delete / edit / add-on
-        - For required field
-            - Able to edit
-        - For Non-required field
-            - able to delete / edit / add-on
-    - Comments about the post are displayed and can be deleted but not edited.
-
-    INTERACTION
-    - User can input edit and delete information regarding the post
-    - A save button to finalize and submit all updates.
-    - A back button to cancel the session and return to user's Dashboard
-    - A Home button to direct to homePage
+5) Editing Profile **Edit Profile Page**
+<img src ="wireframe/EditProfilePage.PNG" width= "100%">
+- A form submission with current value displayed.
     
-6) Showing a Post **showPage**
+    INTERACTION 
+    - User can only edit name / nickname / biography. 
+    - To change profile picture is a seperate function. (**NEGATIVE POINT**) 
 
-    Display
-    - A div block that display all information about the post
-    - An input (textarea) bar to post comment on the post
-    - A add button to add an image 
-    - A delete button to delete post
-    - A edit button to edit post (redirects to editPage)
-    
+
+
+6) User DashBoard Page **when not authenticated**
+<img src ="wireframe/NA -DashboardPage.PNG" width= "100%">
+- User sees other user's dashboard with a couple of interaction towards that user
+
     INTERACTION
-    - User can see the most recent comment. 
-    - User can post his own comment in response to that comment made by other users.
+    - User can click follow which will instantly add to the list of followers <userFollowing> array that currentuser has and currentuser name will be added to the other user list of <followedBy> array
+    - User can click again to unfollow the user. 
+    - Number of followers and following is displayed in the profile card which is instantly updated. 
+    - User can go on to see individual subject that the particular user has posted. 
 
-7) 
+7) User Single feed page **when not authenticated**
+<img src ="wireframe/NA -FeedPage.PNG" width= "100%">
+
+    INTERACTION
+    - User can only view and post comment
+    - Search bar and User's profile card remain. 
+
 
 ## Data Structure
-
-DATABASE NAME : ``` gameMeetup ```
 
 Datas will be structured into two collections.
 - 'user' collections which will store user's information such as name, email, password, date created and date that infomation is updated.
@@ -200,7 +199,7 @@ Datas will be structured into two collections.
     {
         $jsonSchema: {
             type: 'object',
-            required:['username','nickname','email','password'],
+            required:['username','nickname','password'],
             properties: {
                 username: {
                     bsonType: 'string'
@@ -208,17 +207,26 @@ Datas will be structured into two collections.
                 nickname: {
                     bsonType: 'string'
                 },
-                email: {
+                biography: {
                     bsonType: 'string'
                 },
                 password: {
                     bsonType: 'string'
                 },
                 createdAt: {
-                    bsonType: 'date'
+                    bsonType: 'string'
                 },
                 updatedAt: {
-                    bsonType: 'date'
+                    bsonType: 'string'
+                },
+                lastLoggedInAt : {
+                    bsonType: 'string'
+                },
+                userFollowing : {
+                    bsonType : 'Array' // Array of strings of other username
+                },
+                followedBy : {
+                    bsonType : 'Array' // Array of strings of other username
                 }
             }
         }
@@ -248,8 +256,8 @@ Datas will be structured into two collections.
                         bsonType: 'object',
                         properties: {
                             postID: {
-                                bsonType: 'number',
-                                description: 'index of post'
+                                bsonType: 'ObjectId',
+                                description: 'ID of the post'
                             },
                             title: {
                                 bsonType: 'string',
@@ -312,30 +320,86 @@ Datas will be structured into two collections.
         }
     }
     ```
+## Methodology
+
+Methods below will be described by key functions name as header and methods will be described to achieve that function. 
+
+1) Sign Up / Sign In page.
+    - on landing page, if req.session.currentUser does not exist, landing page will have two seperate form to display sign in and new user page. Submitting new user with validated form will redirect to landing page for user to sign in. 
+
+    - Sign in page will re render landaing page with rea.session.currentUser now exist. With the condition return true, landing page will display all feeds in ```InfoBank``` database which creates "DashboardPage"
+
+2) Uploading of images (for the 1st time)
+    - Using ```multer``` to upload file and grab req.file from the submitted form and using ```cloudinary.upload``` to perform upload image file to cloudinary and serve back the file as a usable url link with will be the image src displayed. 
+
+    - During editing, ```<input type="files"></input>``` could not display default value. On submitting edited information, image uploaded will not be valid which leads to unsuccessful submission. A solution is to seperate the function to edit and change picture away from submmiting other "string" type information. See changing of profile picture as an example. 
+
+3) Following and followed By 
+    - With each user having ```userFollowing``` and ```followedBy``` array properties. A submit button would trigger the function to push currentuser to targetteduser array and vice versa. Two repository and mongo action has to be called to perform action.
+
+    - After action, A function is called to retrieve currentUser's data before rendering the dashboard view to update the current status. 
     
+    - In ejs, condition is put to facilate which display to use. ```if(currentUser.username === userDashboard.username)``` edit profile will display. ```if(currentUser.userFollowing.includes(userDashboard.username))``` it will display "following" anything else will be displayed as " follow"
 
+4) Search by tag / username / title
+    - search input with three submit. tag buttons / username buttons / title buttons.
+    - Each submit will have different action which triggers different routes. ```<button type='submit' formaction='/your/route/name'>submit2</button>```
 
+5) To Upload images with icon
+    - Using Jquery to click an hidden element activates upload button which triggers the input for user to select files to upload from local machine. 
+    - Upon clicking icon, submit button would appear, making it more user-friendly. 
 
+6) Readable date format
+    - Translate date object to readable string format using moment.js. 
+    - When deployed to Heroku, ```newDate()``` is not localized. **Need to find a way to localized it**
 
-// comment stucture
-// post stucture
+7) BOOTSTRAP
+    - Online resource: Bootstrap to style website. 90% of styling is done through Bootstrap. 
+ 
+## Developer Journey
 
-name: user A
-post:{details of post with the comment nested in.}
-a userid that tags to the comment
+Process
 
+1) Install relevant dependency, connect to server. Setting up middleware
+2) create GET/ POST / DELETE / EDIT ROUTE. 
+3) writing schema and test data validation before importing schema into mongo
+4) Starts to create Ejs view and create new feed
+5) create post comment routes
+6) Editing routes done. 
+7) CRUD fully working for one user
+8) create Dashboard page
+9) Create User authentication layer
+10) Multiple user created and show in dashboard page
+11) Uploading media resource using multer and cloudinary
+12) Search function, Edit profile card done. 
+13) Organize view files into partials. 
+14) Started to style. 
+15) troubleshoot html input for cloudinary on uploading images.
+16) Deploy trial app in heroku and database to MongoAtlas
+17) Tightening functions and tying loose ends
+18) Deploy 2nd trial in heroku
+19 troubleshooting image uploading (with http// vs https// img url)
 
-documents which are user
-documents which are post. 
+Accomplishment
+- Able to complete a forum-like application with full CRUD function
+- Able to upload images from local machine. 
+- Able to make the follow / followed function working. 
+- Able to use bootstrap comfortably. so far only have one css file to fit all views. Minimum css wode writing. 
 
-name: user A
-post ['id1, id2]
+Struggles 
+- To create flexibity to update or not update an image in a single form submission. 
+- If using ```<input type=file>``` then cannot display default value which cannot be edit which give users no choice but to change the image everytime it clicks edit. 
+- Struggle to organize code. As codes are compartmentalize and fragmented and more functions are written, Sometimes can get lost in my own code. 
 
-post data
-id1: {
-    details of the post
-}
+Learning
+- Learn to enjoy the process of creating. Learning to celebrate victories no matter how small it may be
+- Collaborative spirit. Learn by asking and share through helping. 
+- Learn to embrace the feeling of defeatism. 
+- **REALLY** need to plan and strategize. Especially data structure. Make sure all data structures, all your views and function can be achieved before jumping right in to coding.
 
-// authentication is lower priority. use dropdown list of created users. 
-
-
+## Future Development (HOPE TO BUT...)
+- Use other media source like upload or embed video
+- Learning to use and apply ```<canvas>```
+- Learning more to deal with date objects. 
+- Showing who is currently online. ( handle multiple user.session)
+- Writing TDD / Error handling  / Data validation in a more comphensive manner. (time consuming but good practice.)
