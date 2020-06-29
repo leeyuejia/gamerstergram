@@ -7,7 +7,10 @@ const upload = multer({dest: 'uploads/'})
 module.exports = (app) => {
     app.get('/', (req,res) => res.redirect('/app/login'))
     app.get('/app/login', gamesterController.allUsersFeeds)
+    
+    app.get('/app/login/filter/username/:filterByTag', gamesterController.filteredUsernameIndexPage)
     app.get('/app/login/filter/:filterByTag', gamesterController.filteredTagIndexPage)
+    app.put('/app/login/filterByUsername', gamesterController.filterByUsername)
     app.put('/app/login/filterByTag', gamesterController.filterByTags)
     // user start a session
     app.get('/app/sessions/new', sessionsController.newForm)

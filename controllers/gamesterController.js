@@ -159,12 +159,27 @@ module.exports = {
     async filterByTags(req, res) {
         return res.redirect(`/app/login/filter/${req.body.filterByTags}`)
     },
+    async filterByUsername(req, res) {
+        return res.redirect(`/app/login/filter/username/${req.body.filterByTags}`)
+    },
     async filteredTagIndexPage (req,res) {
         const filterByTag = req.params.filterByTag
+        console.log(filterByTag + "by tags")
         try {
             const currentUser = await usersRepository.findUserByUsername(req.session.currentUser.username)
             const allUserFeeds = await infoBankRepository.getAll();
             res.render('filteredIndexByTag', { currentUser, allUserFeeds, filterByTag})
+        } catch (err) {
+            return res.render(`error/404`, { err })
+        }
+    },
+    async filteredUsernameIndexPage (req,res) {
+        const filterByUsername = req.params.filterByTag
+        console.log(filterByUsername + 'by name')
+        try {
+            const currentUser = await usersRepository.findUserByUsername(req.session.currentUser.username)
+            const allUserFeeds = await infoBankRepository.getAll();
+            res.render('filteredIndexByUsername', { currentUser, allUserFeeds, filterByUsername})
         } catch (err) {
             return res.render(`error/404`, { err })
         }

@@ -20,6 +20,7 @@ const removeTag = (event) => {
 
 const commentUploadImg = () => {
     $('#commentImg').click();
+    $('.changePicture').css('display', 'block')
 }
 $(() => {
     console.log('connected to jquery')

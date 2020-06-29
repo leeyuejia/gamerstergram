@@ -403,3 +403,4 @@ Learning
 - Learning more to deal with date objects. 
 - Showing who is currently online. ( handle multiple user.session)
 - Writing TDD / Error handling  / Data validation in a more comphensive manner. (time consuming but good practice.)
+- Writing more responsive css
