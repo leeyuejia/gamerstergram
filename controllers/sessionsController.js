@@ -12,7 +12,6 @@ module.exports = {
                 req.session.currentUser = user;
                 const result = await usersRepository.updateLastLoggedIn(req.body.username);                 //update last loggedin date
                 console.log('result of updating date is:' + result)
-                
                 return res.redirect('/');
             } else {
                 throw new Error();

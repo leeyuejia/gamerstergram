@@ -30,8 +30,8 @@ uploadImg = async (filePath) => {
         }
         else { console.log(err) }
     })
-    console.log(result.url)
-    return result.url
+    console.log(result.secure_url)
+    return result.secure_url
 }
 
 module.exports = {

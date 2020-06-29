@@ -20,8 +20,8 @@ uploadImg = async (filePath) => {
             }
             else {console.log(err)}
         })
-    console.log(result.url)
-    return result.url
+    console.log(result.secure_url)
+    return result.secure_url
 }
 const dateFormatter = (input) => {
     return moment(input).format('dddd, MMMM Do YYYY, kk:mm:ss')
