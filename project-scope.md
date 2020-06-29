@@ -62,7 +62,6 @@ BONUS : include password authentication and adding a social list.
 1) CSS
 2) MVC structure
 3) JQuery
-4) AJAX
 5) EJS view engine
 6) MongoDB
 7) Node.js
@@ -70,7 +69,8 @@ BONUS : include password authentication and adding a social list.
 9) Heroku (for deployment of application)
 10) Mongo Atlas ( for storing databases on cloud platform)
 11) External source
-    - (if any, to be added)
+    - Multer (For uploading of image to server side)
+    - Cloudinary (Media storage )
 
 ## Main Features
 
