@@ -18,7 +18,8 @@ const dateFormatter = (input) => {
 cloudinary.config({
     cloud_name: 'gamestergram',
     api_key: 663843891388912,
-    api_secret: 'r1Nos8ynCgtd-TTLGcMRP-hhlQE'
+    api_secret: 'r1Nos8ynCgtd-TTLGcMRP-hhlQE',
+    secure : true,
 })
 uploadImg = async (filePath) => {
     const result = await cloudinary.uploader.upload(filePath, {
