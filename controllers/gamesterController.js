@@ -105,6 +105,7 @@ module.exports = {
         const postId = req.params.id
         console.log('username is ' + username + ' and feedid is ' + postId)
         const commentsToUpdate = {
+            commentID : ObjectId(),
             commentInfo: req.body.commentInfo,
             commentBy: req.session.currentUser.nickname,
             commentAt: dateFormatter(new Date()),
@@ -140,6 +141,13 @@ module.exports = {
         console.log('for deletepost, username is ' + username + " and postId is " + postId)
         const result = await infoBankRepository.deleteOnePostByPostId(username, postId)
         res.redirect(`/app/${username}/dashboard`)
+    },
+    async deleteComment (req,res) {
+        const username = req.params.name
+        const postId = req.params.id
+        const commentId = req.params.commentId
+        const result = await infoBankRepository.deleteOneCommentByPostId(username, postId,commentId)
+        res.redirect(`/app/${username}/dashboard/${postId}`)
     },
     async followUser(req, res) {
         const usernameToFollow = req.params.name

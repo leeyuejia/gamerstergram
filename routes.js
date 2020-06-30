@@ -38,5 +38,7 @@ module.exports = (app) => {
     app.put('/app/:name/dashboard/:id/edit', /*upload.single('feedImg'),*/ gamesterController.updateFeed)
     
     app.delete('/app/:name/dashboard/:id/delete', gamesterController.deletePost)
+    app.delete('/app/:name/dashboard/:id/comment/:commentId/delete', gamesterController.deleteComment)
+    
 }
 

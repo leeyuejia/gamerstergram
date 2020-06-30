@@ -22,7 +22,7 @@
       <form class="form-inline my-2 my-lg-0 mx-2 flex-grow-1" action='/app/login/filterByTag?_method=PUT' method="POST">
         <input class="form-control mr-sm-2" type="search" name='filterByTags' placeholder="Search" aria-label="Search" style="width: 30%;">
         <button class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit">by tags</button>
-        <button class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit">by username</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit" formaction="/app/login/filterByUsername?_method=PUT">by username</button>
       </form>
       <h5 class="justify-self-end">Hi! <%= currentUser.username%></h5>
     </nav>
@@ -36,9 +36,6 @@
           <li class="nav-item active">
             <a class="nav-link" href="/app/<%=currentUser.username%>/dashboard">My DashBoard <span
                 class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/app/<%=currentUser.username%>/dashboard/create/newfeed">Add</a>

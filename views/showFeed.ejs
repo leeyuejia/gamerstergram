@@ -23,30 +23,44 @@
             </div>
             <div class="card-body">
                 <h5 class="card-text">tags</h5>
+                <ul class="nav">
                 <%oneFeed.tags.forEach(tag => {%>
-                <p class="card-text"><%=tag%></p>
+                    <li class="nav-item">
+                         <p class="nav-link active border-right"><%=tag%></p>
+                    </li>
                 <%})%>
+                </ul>
             </div>
             <% if(currentUser.username === userDashboard.username) {%>
-            <a href="/app/<%=username%>/dashboard/<%=postId%>/edit" class="btn btn-danger mx-3">Edit this post</a>
+            <a href="/app/<%=username%>/dashboard/<%=postId%>/edit" class="btn btn-primary mx-3" style="width: 8rem;">Edit</a>
             <%}%>
             <ul class="list-group list-group-flush my-3">
-                <% if(oneFeed.comments) {%>
-            <%oneFeed.comments.forEach(el => {%>
-            <% if(el.commentImg) { %>
-            <div class="commentImg">
-                <img src="<%=el.commentImg%>" alt="" class="card-img-top img-fit" height="200px">
-            </div>
-            <% } %>
-            <li class="input-group my-2 d-flex flex-row flex-nowrap align-content-center justify-content-start border-bottom pb-2"
-                style="width: 100%;">
-                <div class="input-group-text flex-column justify-content-between" style="width: 8rem;">
-                    <p class=" text-center text-wrap p-1" style='width: 8rem;'><%=el.commentBy%></p>
-                    <span class="text-muted text-wrap small p-1" id="basic-addon2">on <%=el.commentAt%></span>
-                </div>
-                <p class=" m-2" style="width: 100%;"><%=el.commentInfo%></p>
-            </li>
-            <%})%>
+            <% if(oneFeed.comments) {%>
+                <%oneFeed.comments.forEach(el => {%>
+                    <% if(el.commentImg) { %>
+                    <div class="commentImg">
+                        <img src="<%=el.commentImg%>" alt="" class="card-img-top img-fit" height="200px">
+                    </div>
+                    <%}%>
+                    <li class="input-group my-2 d-flex flex-row flex-nowrap align-content-center justify-content-start border-bottom pb-2"
+                        style="width: 100%;">
+                        <div class="input-group-text flex-column justify-content-between" style="width: 8rem;">
+                            <p class=" text-center text-wrap p-1" style='width: 8rem;'><%=el.commentBy%></p>
+                            <span class="text-muted text-wrap small p-1" id="basic-addon2">on <%=el.commentAt%></span>
+                        </div>
+                        <p class=" m-2" style="width: 100%;"><%=el.commentInfo%></p>
+                            <%if (currentUser.username === userDashboard.username) { %>
+                            <div class="deleteComment align-self-end mr-3">
+                                <form action="/app/<%=currentUser.username%>/dashboard/<%=oneFeed.postID%>/comment/<%=el.commentID%>/delete?_method=DELETE" method="POST">
+                                <button class="btn btn-danger" type="submit"> delete </button>
+                                </form>
+                            </div>
+                            <%}%>
+                    </li>
+
+                    
+
+                <%})%>
             <% } else { %>
             <div class="card-body">
                 <h5 class="card-title">No comment</h5>
@@ -64,8 +78,7 @@
             style="width: 40rem;" id="table">
             <div class="input-group mb-3 my-3 align-items-stretch">
                 <div class="input-group-prepend">
-                    <label for="title" class="input-group-text" id="basic-addon3" style='width: 8rem;'>say
-                        something
+                    <label for="title" class="input-group-text" id="basic-addon3" style='width: 8rem;'>Comment
                     </label>
                 </div>
                 <input type="text" class="align-self-stretch flex-grow-1" style="width: 1%;" name="commentInfo"

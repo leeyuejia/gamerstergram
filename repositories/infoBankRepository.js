@@ -186,6 +186,38 @@ module.exports = {
         } catch (err) {
             throw new Error(`Due to this ${err.message}, I cannot delete this postId of ` + postId )
         }
-    }
+    },
+    async deleteOneCommentByPostId (username, postId, commentId) {
+        let objectid = ObjectId(postId)
+        let commentID = ObjectId(commentId)
+        console.log(objectid + "objectID" + commentID + " commentID")
+        try {
+            const result = await db.infoBank.updateOne({
+                username: {
+                    '$regex': `^${username}$`,
+                    '$options': 'i'
+                }
+            }, {$pull : { 
+                    "feeds.$[selector].comments": {"commentID": commentID}
+                }
+            },{ arrayFilters:[{"selector.postID" : objectid}]
+            })
+            console.log(result.result.n)
+            const updatePostID = await db.infoBank.findOne({
+                username: {
+                    '$regex': `^${username}$`,
+                    '$options': 'i'
+                }
+            })
+            if(!updatePostID) throw new Error('Cannot find the entry')
+            if(!result.result.n) {
+                throw new Error ('Something went wrong while deleting')
+            }
+            return result;
+        } catch (err) {
+            throw new Error(`Due to this ${err.message}, I cannot delete this postId of ` + postId )
+        }
+    },
+
 
 }
