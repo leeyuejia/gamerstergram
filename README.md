@@ -95,12 +95,12 @@ BONUS : To add a
 
 0) Sign up / sign in **LANDINGPAGE**
 
-<img src ="wireframe/indexpage.png" width= "100%">
+<img src ="wireframe/Indexpage.png" width= "100%">
     - User can choose to sign up or log in. Once authenticated, same page will refresh with authenticated user which is a condition in order for the dashboard page to be displayed. 
 
 0) Signed in **HOMEPAGE**
 
-<img src ="wireframe/indexpage(authenticated).png" width= "100%">
+<img src ="wireframe/indexPage(authenticated).png" width= "100%">
 - Here All users feed are displayed. Quick access tools like search and hamburger menu which is shortcut to user's dashboard, homepage, add subject and logout function. 
 
     DISPLAY
