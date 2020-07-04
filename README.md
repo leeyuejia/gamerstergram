@@ -404,3 +404,6 @@ Learning
 - Showing who is currently online. ( handle multiple user.session)
 - Writing TDD / Error handling  / Data validation in a more comphensive manner. (time consuming but good practice.)
 - Writing more responsive css
+- Password reset function (node mailer - send reset password link and reset password)
+- store objectID in another Database
+- node cron (time automation), node mailer(email services) 
