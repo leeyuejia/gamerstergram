@@ -407,3 +407,8 @@ Learning
 - Password reset function (node mailer - send reset password link and reset password)
 - store objectID in another Database
 - node cron (time automation), node mailer(email services) 
+- busboy (middleware - intersect request beofre hitting express) 
+
+- ** search function (using one route with ? request query) (reference to W9D3 X-files)
+- choice of login or signup as seperate not in one page.
+- RESTful routes naming. (restful route naming convention best practice) 
