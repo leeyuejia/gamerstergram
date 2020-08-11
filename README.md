@@ -1,5 +1,5 @@
 # Project two scope
-
+ THIS IS THE LATEST VERSION
 # App Title - Gamestergram
 
 This application is a website that brings a community of common interest together to share and learn. It is a focus group community on the subject of games.  
